@@ -165,7 +165,7 @@ def scrape_listings(city, area, property_type, purpose):
                     "beds": bedrooms.strip(),
                     "bathrooms": bathrooms.strip(),
                     "area": area.strip(),
-                    "url": f"https://www.zameen.com{href}" if href and href.startswith('/') else href
+                    # "url": f"https://www.zameen.com{href}" if href and href.startswith('/') else href
                 })
 
             except Exception as e:
