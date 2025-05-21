@@ -21,10 +21,10 @@ scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/au
 
 # Recreate google_creds.json file from secret
 #creds_json = os.environ.get("GOOGLE_CREDS_JSON")
-#creds_json = os.environ.get("GOOGLE_CREDS")
+creds_json = os.environ.get("GOOGLE_CREDS")
 
-#if not creds_json:
-#    raise Exception("Missing GOOGLE_CREDS environment variable!")
+if not creds_json:
+    raise Exception("Missing GOOGLE_CREDS environment variable!")
 
 
 
