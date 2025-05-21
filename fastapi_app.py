@@ -17,19 +17,17 @@ app = FastAPI()
 def read_root():
     return {"message": "Hello from Railway"}
 
-
-# Load GOOGLE_CREDS from environment
 creds_json = os.getenv("GOOGLE_CREDS")
 if creds_json is None:
     raise ValueError("Missing GOOGLE_CREDS environment variable")
 
-# Parse the JSON string
-creds_dict = json.loads(creds_json)
+try:
+    creds_dict = json.loads(creds_json)
+    creds_dict["private_key"] = creds_dict["private_key"].replace("\\n", "\n")
+except Exception as e:
+    raise ValueError(f"Invalid GOOGLE_CREDS format: {e}")
 
-# Define the required scopes
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-
-# Create credentials object from dictionary
 credentials = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 
 # Authorize gspread
