@@ -34,7 +34,9 @@ credentials = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope
 client = gspread.authorize(credentials)
 
 # Open the Google Sheet
-sheet = client.open("RealEstateLeads").sheet1
+#sheet = client.open("RealEstateLeads").sheet1
+
+sheet = client.open_by_key("16_CiAyqRg1lehdTONUy6fissvkEokvN72AVlaOZsCUc").sheet1
 
 
 class LeadRequest(BaseModel):
