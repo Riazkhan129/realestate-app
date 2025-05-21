@@ -13,6 +13,10 @@ import json
 
 app = FastAPI()
 
+@app.get("/")
+def read_root():
+    return {"message": "Hello from Railway"}
+
 scope = [
     "https://spreadsheets.google.com/feeds",
     "https://www.googleapis.com/auth/drive"
