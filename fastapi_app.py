@@ -13,23 +13,33 @@ import json
 
 app = FastAPI()
 
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+
+
 creds = ServiceAccountCredentials.from_json_keyfile_name("google_creds.json", scope)
 
 
 # Recreate google_creds.json file from secret
-creds_json = os.environ.get("GOOGLE_CREDS_JSON")
+#creds_json = os.environ.get("GOOGLE_CREDS_JSON")
+creds_json = os.environ.get("GOOGLE_CREDS")
+
+if not creds_json:
+    raise Exception("Missing GOOGLE_CREDS environment variable!")
 
 
-if creds_json:
-    with open("google_creds.json", "w") as f:
-        f.write(creds_json)
-else:
-    raise Exception("Missing GOOGLE_CREDS_JSON environment variable!")
+
+#if creds_json:
+#    with open("google_creds.json", "w") as f:
+#        f.write(creds_json)
+#else:
+#    raise Exception("Missing GOOGLE_CREDS_JSON environment variable!")
 
 
 # Google Sheets setup
-scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("google_creds.json", scope)
+creds_dict = json.loads(creds_json)
+#creds = ServiceAccountCredentials.from_json_keyfile_name("google_creds.json", scope)
+creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+
 client = gspread.authorize(creds)
 sheet = client.open("RealEstateLeads").sheet1
 
