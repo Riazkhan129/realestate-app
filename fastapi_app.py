@@ -13,7 +13,11 @@ import json
 
 app = FastAPI()
 
-scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+scope = [
+    "https://spreadsheets.google.com/feeds",
+    "https://www.googleapis.com/auth/drive"
+]
+# scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 
 
 #creds = ServiceAccountCredentials.from_json_keyfile_name("google_creds.json", scope)
