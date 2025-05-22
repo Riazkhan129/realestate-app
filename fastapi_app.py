@@ -17,26 +17,42 @@ app = FastAPI()
 def read_root():
     return {"message": "Hello from Railway"}
 
-creds_json = os.getenv("GOOGLE_CREDS")
-if creds_json is None:
-    raise ValueError("Missing GOOGLE_CREDS environment variable")
+# Get GOOGLE_CREDS from Railway environment
+*************
 
-try:
-    creds_dict = json.loads(creds_json)
-    creds_dict["private_key"] = creds_dict["private_key"].replace("\\n", "\n")
-except Exception as e:
-    raise ValueError(f"Invalid GOOGLE_CREDS format: {e}")
 
-scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-credentials = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+
+creds = ServiceAccountCredentials.from_json_keyfile_name(
+    "lucid-shuttle-457710-e3-f80b8df2c4dd.json",  # Replace with your actual file name
+    ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+)
+
+client = gspread.authorize(creds)
+sheet = client.open_by_key("16_CiAyqRg1lehdTONUy6fissvkEokvN72AVlaOZsCUc").sheet1
+
+***********
+
+
+#creds_json = os.getenv("GOOGLE_CREDS")
+#if creds_json is None:
+#    raise ValueError("Missing GOOGLE_CREDS environment variable")
+
+#try:
+#    creds_dict = json.loads(creds_json)
+#    creds_dict["private_key"] = creds_dict["private_key"].replace("\\n", "\n")
+#except Exception as e:
+#    raise ValueError(f"Invalid GOOGLE_CREDS format: {e}")
+
+#scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+#credentials = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 
 # Authorize gspread
-client = gspread.authorize(credentials)
+#client = gspread.authorize(credentials)
 
 # Open the Google Sheet
 #sheet = client.open("RealEstateLeads").sheet1
 
-sheet = client.open_by_key("16_CiAyqRg1lehdTONUy6fissvkEokvN72AVlaOZsCUc").sheet1
+#sheet = client.open_by_key("16_CiAyqRg1lehdTONUy6fissvkEokvN72AVlaOZsCUc").sheet1
 
 
 class LeadRequest(BaseModel):
