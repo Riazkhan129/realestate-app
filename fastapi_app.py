@@ -46,7 +46,7 @@ credentials = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope
 client = gspread.authorize(credentials)
 
 # 7. Open the sheet by its ID (get it from the URL of the Google Sheet)
-sheet = client.open_by_key("16_CiAyqRg1lehdTONUy6fissvkEokvN72AVlaOZsCUc").worksheet("sheet1")
+sheet = client.open_by_key("16_CiAyqRg1lehdTONUy6fissvkEokvN72AVlaOZsCUc").worksheet("Sheet1")
 
 # 8. Test reading data (optional)
 print(sheet.get_all_records())
