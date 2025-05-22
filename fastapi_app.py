@@ -18,41 +18,41 @@ def read_root():
     return {"message": "Hello from Railway"}
 
 # Get GOOGLE_CREDS from Railway environment
-*************
+############
 
+# 1. Load the JSON string from environment variable
+creds_json = os.getenv("GOOGLE_CREDS")
+if creds_json is None:
+    raise ValueError("Missing GOOGLE_CREDS environment variable")
 
+try:
+    # 2. Convert JSON string into Python dict
+    creds_dict = json.loads(creds_json)
+    # 3. Replace escaped newlines in private key
+    creds_dict["private_key"] = creds_dict["private_key"].replace("\\n", "\n")
+except Exception as e:
+    raise ValueError(f"Invalid GOOGLE_CREDS format: {e}")
 
-creds = ServiceAccountCredentials.from_json_keyfile_name(
-    "lucid-shuttle-457710-e3-f80b8df2c4dd.json",  # Replace with your actual file name
-    ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-)
+# 4. Define access scopes
+scope = [
+    "https://spreadsheets.google.com/feeds",
+    "https://www.googleapis.com/auth/drive"
+]
 
-client = gspread.authorize(creds)
+# 5. Create credentials object
+credentials = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+
+# 6. Authorize and connect to Google Sheets
+client = gspread.authorize(credentials)
+
+# 7. Open the sheet by its ID (get it from the URL of the Google Sheet)
 sheet = client.open_by_key("16_CiAyqRg1lehdTONUy6fissvkEokvN72AVlaOZsCUc").sheet1
 
-***********
+# 8. Test reading data (optional)
+print(sheet.get_all_records())
 
 
-#creds_json = os.getenv("GOOGLE_CREDS")
-#if creds_json is None:
-#    raise ValueError("Missing GOOGLE_CREDS environment variable")
-
-#try:
-#    creds_dict = json.loads(creds_json)
-#    creds_dict["private_key"] = creds_dict["private_key"].replace("\\n", "\n")
-#except Exception as e:
-#    raise ValueError(f"Invalid GOOGLE_CREDS format: {e}")
-
-#scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-#credentials = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
-
-# Authorize gspread
-#client = gspread.authorize(credentials)
-
-# Open the Google Sheet
-#sheet = client.open("RealEstateLeads").sheet1
-
-#sheet = client.open_by_key("16_CiAyqRg1lehdTONUy6fissvkEokvN72AVlaOZsCUc").sheet1
+#############
 
 
 class LeadRequest(BaseModel):
