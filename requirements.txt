@@ -1,10 +1,7 @@
 fastapi
 uvicorn
-streamlit
-playwright
 gspread
 oauth2client
-python-multipart
+streamlit
 requests
 playwright
-
