@@ -5,3 +5,6 @@ playwright
 gspread
 oauth2client
 python-multipart
+requests
+playwright
+
