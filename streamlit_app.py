@@ -30,7 +30,12 @@ if st.button("Get Listings"):
 
         with st.spinner("Fetching listings..."):
             try:
-                response = requests.post("https://5982-39-51-118-82.ngrok-free.app/lead", json=payload)
+                # ✅ Set your deployed FastAPI backend URL
+                API_URL = "https://web-production-94b88.up.railway.app/lead"
+                # ✅ Use the correct URL when sending request
+                response = requests.post(API_URL, json=payload)
+
+                # response = requests.post("https://5982-39-51-118-82.ngrok-free.app/lead", json=payload)
                 response.raise_for_status()
                 listings = response.json()
 
