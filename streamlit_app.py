@@ -31,7 +31,8 @@ if st.button("Get Listings"):
         with st.spinner("Fetching listings..."):
             try:
                 # ✅ Set your deployed FastAPI backend URL
-                API_URL = "https://web-production-94b88.up.railway.app/lead"
+                API_URL = "http://localhost:8000/lead"
+ #               API_URL = "https://web-production-94b88.up.railway.app/lead"
                 # ✅ Use the correct URL when sending request
                 response = requests.post(API_URL, json=payload)
 
