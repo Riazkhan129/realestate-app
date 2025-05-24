@@ -27,10 +27,10 @@ except Exception as e:
 # 1. Input Fields
 name = st.text_input("Full Name")
 phone = st.text_input("Phone Number")
-purpose = st.selectbox("Purpose", ["Buy", "Rent"])
-property_type = st.selectbox("Property Type", ["Flat", "House", "Plot"])
-city = st.selectbox("City", ["Karachi", "Lahore", "Islamabad"])
-area = st.selectbox("Area", ["DHA Defence", "Clifton", "Gulshan-e-Iqbal Town", "Gulistan-e-Jauhar", "Scheme 33", "Bahria Town Karachi", "Jamshed Town", "DHA City Karachi"])
+purpose = st.selectbox("purpose", ["Buy", "Rent"])
+property_type = st.selectbox("property Type", ["Flat", "House", "Plot"])
+city = st.selectbox("city", ["Karachi", "Lahore", "Islamabad"])
+area = st.selectbox("area", ["DHA Defence", "Clifton", "Gulshan-e-Iqbal Town", "Gulistan-e-Jauhar", "Scheme 33", "Bahria Town Karachi", "Jamshed Town", "DHA City Karachi"])
 
 # 2. Submit Button
 if st.button("Get Listings"):
@@ -49,7 +49,7 @@ if st.button("Get Listings"):
         with st.spinner("Fetching listings..."):
             try:
                 # ✅ Set your deployed FastAPI backend URL
-                API_URL = "http://localhost:8000/lead"
+                API_URL = "http://localhost:8001/lead"
  #               API_URL = "https://web-production-94b88.up.railway.app/lead"
                 # ✅ Use the correct URL when sending request
                 response = requests.post(API_URL, json=payload)
