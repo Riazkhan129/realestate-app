@@ -7,7 +7,7 @@ import time
 # API_URL = "http://localhost:8001/lead"  # Change if hosted elsewhere
 
 # Start FastAPI in the background
-subprocess.Popen(["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"])
+subprocess.Popen(["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001"])
 
 # Optional: Wait briefly to let FastAPI start
 time.sleep(2)
@@ -16,14 +16,13 @@ time.sleep(2)
 st.title("🏠 Real Estate Lead Generator")
 
 try:
-    response = requests.get("http://localhost:8000/filters")
+    response = requests.get("http://localhost:8001/filters")
     if response.status_code == 200:
         st.json(response.json())
     else:
         st.error("Failed to fetch filters.")
 except Exception as e:
     st.error(f"Error fetching filters: {e}")
-
 
 # 1. Input Fields
 name = st.text_input("Full Name")
