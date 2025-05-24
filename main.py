@@ -294,9 +294,9 @@ def get_filters():
             city_el = page.query_selector('[aria-label="City filter"] .f3117e76 .fontCompensation')
             type_el = page.query_selector('[aria-label="Category filter"] .f3117e76 .fontCompensation')
 
-            filters["purpose"] = [purpose_el.inner_text()] if purpose_el else purposes
-            filters["city"] = [city_el.inner_text()] if city_el else cities
-            filters["property_type"] = [type_el.inner_text()] if type_el else property_types
+            filters["purpose"] = [purpose_el.inner_text()] if purpose_el else purpose
+            filters["city"] = [city_el.inner_text()] if city_el else city
+            filters["property_type"] = [type_el.inner_text()] if type_el else property_type
 
         except Exception as e:
             print(f"⚠️ Error scraping homepage filters: {e}")
