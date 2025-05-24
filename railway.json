@@ -1,8 +1,6 @@
 {
-  "build": {
-    "builder": "NIXPACKS"
-  },
-  "deploy": {
-    "startCommand": "./start.sh"
+  "start": "playwright install --with-deps && streamlit run streamlit_app.py",
+  "env": {
+    "PLAYWRIGHT_BROWSERS_PATH": "0"
   }
 }

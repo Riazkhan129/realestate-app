@@ -1,3 +1,2 @@
 #!/bin/bash
-chmod +x ./start.sh
-python run_app.py
+exec python run_app.py
