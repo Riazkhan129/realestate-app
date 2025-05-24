@@ -269,10 +269,10 @@ def receive_lead(data: LeadRequest):
 def get_filters():
 #    from time import sleep
 #    filters = {}
-#    cities = ["Karachi", "Lahore", "Islamabad"]
-#    purposes = ["Rent", "Buy"]
-#    property_types = ["Apartment", "House", "Commercial", "Plot"]
-#    areas_by_city = {}
+    cities = ["Karachi"]
+    purposes = {purpose} #["Rent", "Buy"]
+    property_types = (property_type} #["Apartment", "House", "Commercial", "Plot"]
+    areas_by_city = {}
 #    print(f"⚠️ in areas by city")
     
     with sync_playwright() as p:
@@ -294,9 +294,9 @@ def get_filters():
             city_el = page.query_selector('[aria-label="City filter"] .f3117e76 .fontCompensation')
             type_el = page.query_selector('[aria-label="Category filter"] .f3117e76 .fontCompensation')
 
-            filters["purpose"] = [purpose_el.inner_text()] if purpose_el else purpose
-            filters["city"] = [city_el.inner_text()] if city_el else city
-            filters["property_type"] = [type_el.inner_text()] if type_el else property_type
+            filters["purpose"] = [purpose_el.inner_text()] if purpose_el else purposes
+            filters["city"] = [city_el.inner_text()] if city_el else cities
+            filters["property_type"] = [type_el.inner_text()] if type_el else property_types
 
         except Exception as e:
             print(f"⚠️ Error scraping homepage filters: {e}")
