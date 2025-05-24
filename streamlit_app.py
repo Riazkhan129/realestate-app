@@ -1,14 +1,11 @@
 import streamlit as st
 import requests
 
-@app.get("/")
-def read_root():
-    return {"message": "Hello from Streamlit.Railway"}
-
 # Set your FastAPI backend URL
-API_URL = "http://localhost:8000/lead"  # Change if hosted elsewhere
+API_URL = "http://localhost:8001/lead"  # Change if hosted elsewhere
 
 st.title("🏠 Real Estate Lead Generator")
+
 
 
 # 1. Input Fields
