@@ -28,14 +28,18 @@ except Exception as e:
 name = st.text_input("Full Name")
 phone = st.text_input("Phone Number")
 purpose = st.selectbox("purpose", ["Buy", "Rent"])
+st.write(f"You selected: {purpose}")
 property_type = st.selectbox("property Type", ["Flat", "House", "Plot"])
-city = st.selectbox("city", ["Karachi", "Lahore", "Islamabad"])
+st.write(f"You selected: {property_type}")
+city = st.selectbox("city", ["Karachi"])
+st.write(f"You selected: {city}")
 area = st.selectbox("area", ["DHA Defence", "Clifton", "Gulshan-e-Iqbal Town", "Gulistan-e-Jauhar", "Scheme 33", "Bahria Town Karachi", "Jamshed Town", "DHA City Karachi"])
+st.write(f"You selected: {area}")
 
 # 2. Submit Button
 if st.button("Get Listings"):
-    if not all([name.strip(), phone.strip(), area.strip()]):
-        st.warning("Please fill in all required fields: name, phone, and area.")
+    if not all([name.strip(), phone.strip(), purpose.strip(), property_type.strip(), city.strip(),area.strip()]):
+        st.warning("Please fill in all required fields: name, phone, purpose, property type, city and area.")
     else:
         payload = {
             "name": name,
