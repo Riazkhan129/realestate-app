@@ -13,9 +13,9 @@ import json
 
 app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"message": "Hello from Railway"}
+#@app.get("/")
+#def read_root():
+#    return {"message": "Hello from Railway"}
 
 # Get GOOGLE_CREDS from Railway environment
 ############
