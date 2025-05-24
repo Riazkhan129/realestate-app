@@ -55,7 +55,7 @@ except Exception as e:
 
 
 # 8. Test reading data (optional)
-print(sheet.get_all_records())
+# print(sheet.get_all_records())
 
 
 ##########
