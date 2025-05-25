@@ -46,8 +46,6 @@ credentials = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope
 client = gspread.authorize(credentials)
 
 # 7. Open the sheet by its ID (get it from the URL of the Google Sheet Name)
-#sheet = client.open_by_key("16_CiAyqRg1lehdTONUy6fissvkEokvN72AVlaOZsCUc").worksheet("Sheet1")
-#sheet = client.open_by_key("16_CiAyqRgI1ehdT0NUy6fissvkEokvN72AVIaOZsCUc").worksheet("Sheet1")
 try:
     sheet = client.open_by_key("16_CiAyqRgI1ehdT0NUy6fissvkEokvN72AVIaOZsCUc").worksheet("Sheet1")
 except Exception as e:
@@ -139,6 +137,8 @@ def get_zameen_url(city, area, property_type, purpose):
             category = "Houses_Property"
         elif property_type.strip().lower() == "commercial":
             category = "Commercial"
+         elif property_type.strip().lower() == "plot":
+            category = "Plots"
         else:
             category = "Homes"
 
@@ -270,8 +270,8 @@ def get_filters():
 #    from time import sleep
 #    filters = {}
     cities = ["Karachi"]
-    purposes = {purpose} #["Rent", "Buy"]
-    property_types = (property_type} #["Apartment", "House", "Commercial", "Plot"]
+    purposes = {purpose}
+    property_types = (property_type}
     areas_by_city = {}
 #    print(f"⚠️ in areas by city")
     
