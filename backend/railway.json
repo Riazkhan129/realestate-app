@@ -1,6 +1,1 @@
-{
-  "start": "playwright install --with-deps && streamlit run streamlit_app.py --server.port=8000",
-  "env": {
-    "PLAYWRIGHT_BROWSERS_PATH": "0"
-  }
-}
+web: uvicorn main:app --host=0.0.0.0 --port=8080
