@@ -137,7 +137,7 @@ def get_zameen_url(city, area, property_type, purpose):
             category = "Houses_Property"
         elif property_type.strip().lower() == "commercial":
             category = "Commercial"
-         elif property_type.strip().lower() == "plot":
+        elif property_type.strip().lower() == "plot":
             category = "Plots"
         else:
             category = "Homes"
