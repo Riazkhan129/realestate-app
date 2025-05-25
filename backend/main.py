@@ -3,7 +3,7 @@
 from fastapi import FastAPI
 # from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from playwright.sync_api import sync_playwright
+from playwright.async_api import async_playwright
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import os
@@ -281,9 +281,9 @@ def get_filters():
 #    areas_by_city = {}
 #    print(f"⚠️ in areas by city")
     
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
+    with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True)
+        page = await browser.new_page()
         url = "https://www.zameen.com"
         page.goto(url, wait_until="networkidle")
 
