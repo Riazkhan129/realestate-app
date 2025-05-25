@@ -80,7 +80,9 @@ def get_area_codes(city: str) -> dict:
 
         
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        # browser = p.chromium.launch(headless=True)
+        browser = await p.chromium.launch(headless=True)
+
         page = browser.new_page()
         page.goto(city_url, timeout=60000)
 
