@@ -1,0 +1,8 @@
+
+fastapi
+uvicorn
+gspread
+oauth2client
+streamlit
+requests
+playwright
