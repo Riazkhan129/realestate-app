@@ -80,9 +80,8 @@ def get_area_codes(city: str) -> dict:
 
         
     with sync_playwright() as p:
-        # browser = p.chromium.launch(headless=True)
-        browser = await p.chromium.launch(headless=True)
-
+        browser = p.chromium.launch(headless=True)
+        
         page = browser.new_page()
         page.goto(city_url, timeout=60000)
 
@@ -271,45 +270,32 @@ def receive_lead(data: LeadRequest):
 ####
 
 @app.get("/filters")
-#def get_filters():
 def get_filters():
     from playwright.sync_api import sync_playwright
     filters = {}
 
-#    from time import sleep
-#    filters = {}
-#    areas_by_city = {}
-#    print(f"⚠️ in areas by city")
-    
-    with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
-        page = await browser.new_page()
-        url = "https://www.zameen.com"
-        page.goto(url, wait_until="networkidle")
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page()
+            url = "https://www.zameen.com"
+            page.goto(url, wait_until="networkidle")
 
-
-
-        try:
-            # Visit homepage to extract text values (optional — or use hardcoded above)
- #           page.goto("https://www.zameen.com", wait_until="networkidle")
-
-            filters = {}
-            
-            # Try extracting text from homepage filters
             purpose_el = page.query_selector('[aria-label="Purpose filter"] .f3117e76 .fontCompensation')
             city_el = page.query_selector('[aria-label="City filter"] .f3117e76 .fontCompensation')
             type_el = page.query_selector('[aria-label="Category filter"] .f3117e76 .fontCompensation')
 
             filters["purpose"] = [purpose_el.inner_text()] if purpose_el else []
             filters["city"] = [city_el.inner_text()] if city_el else []
-            filters["property_type"] = [type_el.inner_text()] if type_el else[]
+            filters["property_type"] = [type_el.inner_text()] if type_el else []
 
-        except Exception as e:
-            print(f"⚠️ Error scraping homepage filters: {e}")
-            filters = {"error": str(e)}
-        finally:
             browser.close()
-        return filters
+    except Exception as e:
+        print(f"⚠️ Error scraping homepage filters: {e}")
+        filters = {"error": str(e)}
+
+    return filters
+
 
         # Now fetch area lists per city
 #        try:
