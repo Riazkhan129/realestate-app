@@ -3,7 +3,7 @@ import requests
 
 # ✅ Set your FastAPI backend URL on Railway
 # API_BASE_URL = "https://realestate-backend.up.railway.app"  # Replace with actual Railway FastAPI URL
-API_BASE_URL = "https://perfect-dedication-production.up.railway.app"  # Replace with actual Railway FastAPI URL
+API_BASE_URL = "https://perfect-dedication-production.up.railway.app:8080"  # Replace with actual Railway FastAPI URL
 
 st.title("🏠 Real Estate Lead Generator")
 
