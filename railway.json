@@ -1,9 +1,10 @@
 {
   "build": {
     "commands": [
-      "pip install -r requirements.txt",
-      "playwright install"
+      "python -m pip install -r requirements.txt",
+      "python -m playwright install"
     ]
   },
   "start": "streamlit run frontend/streamlit_app"
 }
+
