@@ -1,6 +1,0 @@
-{
-  "start": "playwright install --with-deps && streamlit run streamlit_app.py --server.port=8000",
-  "env": {
-    "PLAYWRIGHT_BROWSERS_PATH": "0"
-  }
-}
