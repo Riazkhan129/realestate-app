@@ -7,25 +7,35 @@ ENV PYTHONUNBUFFERED=1
 
 # Install system dependencies for Playwright
 RUN apt-get update && \
-    apt-get install -y wget gnupg libnss3 libatk-bridge2.0-0 libgtk-3-0 libxss1 libasound2 libx11-xcb1 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libpango-1.0-0 libcairo2 libatk1.0-0 libatspi2.0-0 fonts-liberation libappindicator3-1 libxshmfence1 lsb-release xvfb && \
-    apt-get clean
+    apt-get install -y wget gnupg curl ca-certificates \
+    libnss3 libatk-bridge2.0-0 libgtk-3-0 libxss1 libasound2 \
+    libx11-xcb1 libxcomposite1 libxdamage1 libxrandr2 libgbm1 \
+    libpango-1.0-0 libcairo2 libatk1.0-0 libatspi2.0-0 \
+    fonts-liberation libappindicator3-1 libxshmfence1 lsb-release \
+    xvfb && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Set working directory for the app
 WORKDIR /app
 
-# Copy full project into /app
-COPY . .
+# Copy only requirements first for caching
+COPY backend/requirements.txt .
 
 # Install Python dependencies
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Install Playwright and Chromium
-RUN pip install playwright && playwright install --with-deps chromium
+# Install Playwright and Chromium with dependencies
+RUN pip install playwright && \
+    playwright install chromium && \
+    playwright install-deps
 
-# Set working directory to /app/backend to run main.py
-WORKDIR /app/backend
+# Copy entire project
+COPY backend/ .
 
-# Run the FastAPI app from backend/main.py
+# Expose port
+EXPOSE 8000
+
+# Start FastAPI app
 CMD ["uvicorn", "main:app", "--host=0.0.0.0", "--port=8000"]
 
 
