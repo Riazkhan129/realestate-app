@@ -4,13 +4,13 @@
       "name": "fastapi-backend",
       "rootDir": "backend",
       "startCommand": "uvicorn main:app --host 0.0.0.0 --port 8000",
-      "buildCommand": "python3 -m pip install -r ../requirements.txt && python3 -m playwright install"
+      "buildCommand": "pip install -r ../requirements.txt && python -m playwright install"
     },
     {
       "name": "streamlit-frontend",
       "rootDir": "frontend",
       "startCommand": "streamlit run streamlit_app.py --server.port 80 --server.address 0.0.0.0",
-      "buildCommand": "python3 -m pip install -r ../requirements.txt && python3 -m playwright install"
+      "buildCommand": "pip install -r ../requirements.txt && python -m playwright install"
     }
   ]
 }
