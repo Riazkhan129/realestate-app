@@ -266,10 +266,14 @@ def receive_lead(data: LeadRequest):
 ####
 
 @app.get("/filters")
+#def get_filters():
 def get_filters():
+    from playwright.sync_api import sync_playwright
+    filters = {}
+
 #    from time import sleep
 #    filters = {}
-    areas_by_city = {}
+#    areas_by_city = {}
 #    print(f"⚠️ in areas by city")
     
     with sync_playwright() as p:
