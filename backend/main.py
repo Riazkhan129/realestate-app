@@ -266,7 +266,10 @@ def receive_lead(data: LeadRequest):
 ####
 
 @app.get("/filters")
-def get_filters():
+def get_filters(cities: Optional[List[str]] = Query(default=["Karachi"]),
+    purposes: Optional[List[str]] = Query(default=["Buy", "Rent"]),
+    property_types: Optional[List[str]] = Query(default=["Homes", "Plots", "Commercial"]),
+):
 #    from time import sleep
 #    filters = {}
     cities = ["Karachi"]
