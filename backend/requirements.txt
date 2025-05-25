@@ -1,5 +1,0 @@
-fastapi
-uvicorn
-playwright
-gspread
-oauth2client

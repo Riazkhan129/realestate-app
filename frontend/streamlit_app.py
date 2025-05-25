@@ -1,3 +1,10 @@
+import subprocess
+import os
+
+if not os.getenv("FASTAPI_RUNNING"):
+    subprocess.Popen(["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"])
+    os.environ["FASTAPI_RUNNING"] = "1"
+
 import streamlit as st
 import requests
 
