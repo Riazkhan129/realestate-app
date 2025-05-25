@@ -20,6 +20,10 @@ app = FastAPI()
 def read_root():
     return {"message": "Hello from Railway"}
 
+def fetch():
+    time.sleep(10)
+
+
 # Get GOOGLE_CREDS from Railway environment
 ############
 
