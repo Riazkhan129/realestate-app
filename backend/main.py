@@ -266,15 +266,9 @@ def receive_lead(data: LeadRequest):
 ####
 
 @app.get("/filters")
-def get_filters(cities: Optional[List[str]] = Query(default=["Karachi"]),
-    purposes: Optional[List[str]] = Query(default=["Buy", "Rent"]),
-    property_types: Optional[List[str]] = Query(default=["Homes", "Plots", "Commercial"]),
-):
+def get_filters():
 #    from time import sleep
 #    filters = {}
-    cities = ["Karachi"]
-    purposes = {purpose}
-    property_types = {property_type}
     areas_by_city = {}
 #    print(f"⚠️ in areas by city")
     
@@ -297,9 +291,9 @@ def get_filters(cities: Optional[List[str]] = Query(default=["Karachi"]),
             city_el = page.query_selector('[aria-label="City filter"] .f3117e76 .fontCompensation')
             type_el = page.query_selector('[aria-label="Category filter"] .f3117e76 .fontCompensation')
 
-            filters["purpose"] = [purpose_el.inner_text()] if purpose_el else purposes
-            filters["city"] = [city_el.inner_text()] if city_el else cities
-            filters["property_type"] = [type_el.inner_text()] if type_el else property_types
+            filters["purpose"] = [purpose_el.inner_text()] if purpose_el else ["Purpose Problem"]
+            filters["city"] = [city_el.inner_text()] if city_el else ["City Problem"]
+            filters["property_type"] = [type_el.inner_text()] if type_el else["property_type Problem"]
 
         except Exception as e:
             print(f"⚠️ Error scraping homepage filters: {e}")
