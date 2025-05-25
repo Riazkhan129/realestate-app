@@ -271,7 +271,7 @@ def get_filters():
 #    filters = {}
     cities = ["Karachi"]
     purposes = {purpose}
-    property_types = (property_type}
+    property_types = {property_type}
     areas_by_city = {}
 #    print(f"⚠️ in areas by city")
     
