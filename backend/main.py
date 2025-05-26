@@ -217,10 +217,6 @@ def scrape_listings(city, area, property_type, purpose):
                     "area": area.strip(),
                     # "url": f"https://www.zameen.com{href}" if href and href.startswith('/') else href
                 })
---------------
-
-
----------
 
             except Exception as e:
                 print(f"⚠️ Skipping card {idx+1} due to error: {e}")
