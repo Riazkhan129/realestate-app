@@ -227,8 +227,8 @@ def scrape_listings(city, area, property_type, purpose):
     for idx, listing in enumerate(listings, 1):
         print(f"📦 Listing {idx}: {listing}")
 
-    print("👀 scrape_listings result:", listings)
-    print("👀 Type of first item:", type(listings[0]) if listings else "No listings")
+    # print("👀 scrape_listings result:", listings)
+    # print("👀 Type of first item:", type(listings[0]) if listings else "No listings")
 
 
     return listings
@@ -260,7 +260,7 @@ def receive_lead(data: LeadRequest):
     listing_messages = []
     ctr = 0
     for listing in listings:
-        print("DEBUG listing:", listing, type(listing))  # <-- Add this
+#        print("DEBUG listing:", listing, type(listing))  # <-- Add this
         if not isinstance(listing, dict):
             print(f"⚠️ Skipping non-dict listing: {listing}")
             continue  # Skip the item if it's not a dictionary
@@ -282,11 +282,11 @@ def receive_lead(data: LeadRequest):
     # Join the listing messages into a single string
     result = "\n".join(listing_messages)
 
-    print("✅ Returning result:", result)
+    #print("✅ Returning result:", result)
     #return {"message": listing_messages}
-    # return {"message": result}
+    return {"message": result}
     # return listings
-    return {"listings": listings}
+    #return {"listings": listings}
 
 
 
