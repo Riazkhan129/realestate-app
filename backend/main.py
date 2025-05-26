@@ -245,7 +245,7 @@ def receive_lead(data: LeadRequest):
         ])
     except Exception as e:
         print(f"Error saving to Google Sheets: {e}")
-
+    print(f"⚠️ before screape listing")
     listings = scrape_listings(data.city, data.area, data.property_type, data.purpose)
 
     
