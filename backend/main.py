@@ -262,7 +262,7 @@ def receive_lead(data: LeadRequest):
     for listing in listings:
         ctr = ctr + 1
 #        listing_message = f"Listing: {ctr} -  {listing['title']},\n in {listing['location']},\n {listing['beds']} Bedrooms, {listing['bathrooms']} Bathrooms,\n {listing['area']},\n Price: {listing['price']},\n View it here: {listing['url']}"
-#-----------
+
         listing_message = (
             f"Listing: {ctr} - {listing.get('title', 'No title')},\n"
             f"in {listing.get('location', 'No location')},\n"
@@ -271,9 +271,6 @@ def receive_lead(data: LeadRequest):
             f"Price: {listing.get('price', 'No price')},\n"
             f"View it here: {listing.get('url', 'No URL')}"
 )
-
-
-#-------------
         listing_messages.append(listing_message)
   #      print ("In listing in listings loop")
 
