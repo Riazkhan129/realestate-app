@@ -280,8 +280,10 @@ def receive_lead(data: LeadRequest):
 
     print("✅ Returning result:", result)
     #return {"message": listing_messages}
-    return {"message": result}
+#    return {"message": result}
     #return listings
+    return {"listings": listings}
+
 
 
 ####
