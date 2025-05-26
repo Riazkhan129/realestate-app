@@ -39,6 +39,13 @@ area = st.selectbox("area", ["DHA Defence", "Clifton", "Gulshan-e-Iqbal Town", "
 if st.button("Get Listings"):
     if not all([name.strip(), phone.strip(), purpose.strip(), property_type.strip(), city.strip(),area.strip()]):
         st.warning("Please fill in all required fields: name, phone, purpose, property type, city and area.")
+        st.text(f"Name: {name}")
+        st.text(f"Phone: {phone}")
+        st.text(f"Purpose: {purpose}")
+        st.text(f"Property Type: {property_type}")
+        st.text(f"City: {city}")
+        st.text(f"Area: {area}")
+        
     else:
         payload = {
             "name": name,
