@@ -25,7 +25,6 @@ def fetch():
 
 
 # Get GOOGLE_CREDS from Railway environment
-############
 
 # 1. Load the JSON string from environment variable
 creds_json = os.getenv("GOOGLE_CREDS")
@@ -57,14 +56,6 @@ try:
     sheet = client.open_by_key("16_CiAyqRgI1ehdT0NUy6fissvkEokvN72AVIaOZsCUc").worksheet("Sheet1")
 except Exception as e:
     raise RuntimeError(f"Failed to access sheet: {e}")
-
-
-# 8. Test reading data (optional)
-# print(sheet.get_all_records())
-
-
-##########
-
 
 class LeadRequest(BaseModel):
     name: str
@@ -113,8 +104,7 @@ def get_area_codes(city: str) -> dict:
 
 # Build Zameen.com URL
 def get_zameen_url(city, area, property_type, purpose):
-    # city_area = f"{city}_{area}-5-1.html"
-
+    
     area_map = get_area_codes(city)  # ✅ get area_map from function
     normalized_area = area.lower()   # ✅ normalize area string to match keys in area_map
 
@@ -227,10 +217,6 @@ def scrape_listings(city, area, property_type, purpose):
     for idx, listing in enumerate(listings, 1):
         print(f"📦 Listing {idx}: {listing}")
 
-    # print("👀 scrape_listings result:", listings)
-    # print("👀 Type of first item:", type(listings[0]) if listings else "No listings")
-
-
     return listings
 
 
@@ -249,14 +235,13 @@ def receive_lead(data: LeadRequest):
         ])
     except Exception as e:
         print(f"Error saving to Google Sheets: {e}")
-    print(f"⚠️ before screape listing")
+#    print(f"⚠️ before screape listing")
     listings = scrape_listings(data.city, data.area, data.property_type, data.purpose)
 
     
     if not listings:
         return "Sorry, no listings found at the moment."
 
-####
     listing_messages = []
     ctr = 0
     for listing in listings:
@@ -274,7 +259,7 @@ def receive_lead(data: LeadRequest):
             f"{listing.get('beds', 'N/A')} Bedrooms, {listing.get('bathrooms', 'N/A')} Bathrooms,\n"
             f"{listing.get('area', 'No area')},\n"
             f"Price: {listing.get('price', 'No price')},\n"
-            f"View it here: {listing.get('url', 'No URL')}"
+#            f"View it here: {listing.get('url', 'No URL')}"
 )
         listing_messages.append(listing_message)
   #      print ("In listing in listings loop")
@@ -282,16 +267,12 @@ def receive_lead(data: LeadRequest):
     # Join the listing messages into a single string
     result = "\n".join(listing_messages)
 
-    print("✅ Returning result:", result)
+ #   print("✅ Returning result:", result)
     #return {"message": listing_messages}
     # return {"message": result}
     # return listings
     return {"listings": listings}
 
-
-
-
-####
 
 @app.get("/filters")
 def get_filters():
