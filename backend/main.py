@@ -256,6 +256,7 @@ def receive_lead(data: LeadRequest):
     listing_messages = []
     ctr = 0
     for listing in listings:
+        print("DEBUG listing:", listing, type(listing))  # <-- Add this
         if not isinstance(listing, dict):
             print(f"⚠️ Skipping non-dict listing: {listing}")
             continue  # Skip the item if it's not a dictionary
