@@ -1,4 +1,3 @@
-
 FROM python:3.10-slim
 
 # Install system dependencies needed by Playwright browsers
@@ -6,7 +5,6 @@ RUN apt-get update && apt-get install -y \
     wget \
     gnupg \
     libglib2.0-0 \
-    libgobject-2.0-0 \
     libnss3 \
     libnss3-dev \
     libatk1.0-0 \
@@ -30,14 +28,14 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# Copy shared requirements
+# Copy requirements
 COPY ../requirements.txt .
 
-# Install Python dependencies and Playwright browsers
+# Install Python dependencies and Playwright
 RUN pip install --no-cache-dir -r requirements.txt && \
     python -m playwright install
 
-# Copy frontend code
+# Copy Streamlit code
 COPY . .
 
 # Expose port and run Streamlit
