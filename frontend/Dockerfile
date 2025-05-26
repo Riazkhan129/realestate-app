@@ -1,17 +1,15 @@
 FROM python:3.10-slim
 
-# Install system dependencies needed by Playwright browsers
+# Install dependencies for Playwright (headless browser support)
 RUN apt-get update && apt-get install -y \
     wget \
+    curl \
     gnupg \
     libglib2.0-0 \
     libnss3 \
-    libnss3-dev \
+    libnspr4 \
     libatk1.0-0 \
     libatk-bridge2.0-0 \
-    libnspr4 \
-    libdbus-1-3 \
-    libexpat1 \
     libx11-6 \
     libxcomposite1 \
     libxdamage1 \
@@ -23,6 +21,15 @@ RUN apt-get update && apt-get install -y \
     libasound2 \
     libxcb1 \
     libatspi2.0-0 \
+    libgdk-pixbuf2.0-0 \
+    libgtk-3-0 \
+    libdbus-1-3 \
+    libexpat1 \
+    fonts-liberation \
+    libnss3-dev \
+    libxss1 \
+    lsb-release \
+    xdg-utils \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -31,11 +38,11 @@ WORKDIR /app
 # Copy requirements
 COPY ../requirements.txt .
 
-# Install Python dependencies and Playwright
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt && \
     python -m playwright install
 
-# Copy Streamlit code
+# Copy all Streamlit code
 COPY . .
 
 # Expose port and run Streamlit
