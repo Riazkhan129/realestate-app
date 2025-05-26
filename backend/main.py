@@ -256,17 +256,21 @@ def receive_lead(data: LeadRequest):
     listing_messages = []
     ctr = 0
     for listing in listings:
-        ctr = ctr + 1
-        listing_message = f"Listing: {ctr} -  {listing['title']},\n in {listing['location']},\n {listing['beds']} Bedrooms, {listing['bathrooms']} Bathrooms,\n {listing['area']},\n Price: {listing['price']},\n View it here: {listing['url']}"
+        if not isinstance(listing, dict):
+            print(f"⚠️ Skipping non-dict listing: {listing}")
+            continue  # Skip the item if it's not a dictionary
 
-#        listing_message = (
-#            f"Listing: {ctr} - {listing.get('title', 'No title')},\n"
-#            f"in {listing.get('location', 'No location')},\n"
-#            f"{listing.get('beds', 'N/A')} Bedrooms, {listing.get('bathrooms', 'N/A')} Bathrooms,\n"
-#            f"{listing.get('area', 'No area')},\n"
-#            f"Price: {listing.get('price', 'No price')},\n"
-#            f"View it here: {listing.get('url', 'No URL')}"
-#)
+        ctr = ctr + 1
+#        listing_message = f"Listing: {ctr} -  {listing['title']},\n in {listing['location']},\n {listing['beds']} Bedrooms, {listing['bathrooms']} Bathrooms,\n {listing['area']},\n Price: {listing['price']},\n View it here: {listing['url']}"
+
+        listing_message = (
+            f"Listing: {ctr} - {listing.get('title', 'No title')},\n"
+            f"in {listing.get('location', 'No location')},\n"
+            f"{listing.get('beds', 'N/A')} Bedrooms, {listing.get('bathrooms', 'N/A')} Bathrooms,\n"
+            f"{listing.get('area', 'No area')},\n"
+            f"Price: {listing.get('price', 'No price')},\n"
+            f"View it here: {listing.get('url', 'No URL')}"
+)
         listing_messages.append(listing_message)
   #      print ("In listing in listings loop")
 
