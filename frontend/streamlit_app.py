@@ -14,14 +14,14 @@ API_BASE_URL = "https://realestate-backendnew.up.railway.app"  # Replace with ac
 
 st.title("🏠 Real Estate Lead Generator")
 
-try:
-    response = requests.get(f"{API_BASE_URL}/filters")
-    if response.status_code == 200:
-        st.json(response.json())
-    else:
-        st.error("Failed to fetch filters.")
-except Exception as e:
-    st.error(f"Error fetching filters: {e}")
+#try:
+#    response = requests.get(f"{API_BASE_URL}/filters")
+#    if response.status_code == 200:
+#        st.json(response.json())
+#    else:
+#        st.error("Failed to fetch filters.")
+#except Exception as e:
+#    st.error(f"Error fetching filters: {e}")
 
 # 1. Input Fields
 name = st.text_input("Full Name")
