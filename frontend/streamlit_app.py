@@ -62,7 +62,7 @@ if st.button("Get Listings"):
                 response = requests.post(f"{API_BASE_URL}/lead", json=payload)
                 response.raise_for_status()
                 listings = response.json()
-                print("✅ from STREAMLIT LISTINGS:", result)
+                print("✅ from STREAMLIT LISTINGS:", listings)
             
                 if listings:
                     st.success(f"Found {len(listings)} listings.")
