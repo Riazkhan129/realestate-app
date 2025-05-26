@@ -1,21 +1,25 @@
-# Use Playwright's official image (with all browser dependencies)
-FROM mcr.microsoft.com/playwright/python:v1.44.0-focal
+FROM python:3.10-slim
 
-# Set working directory
+# Install necessary system libraries for Playwright
+RUN apt-get update && apt-get install -y \
+    wget gnupg curl unzip \
+    libglib2.0-0 libnss3 libgdk-pixbuf2.0-0 libgtk-3-0 \
+    libx11-xcb1 libxcomposite1 libxdamage1 libxrandr2 \
+    libgbm1 libasound2 libxshmfence1 libxfixes3 \
+    libxext6 libxrender1 libxcb1 libx11-6 libatk1.0-0 \
+    libatk-bridge2.0-0 libnspr4 libxss1 libxkbcommon0 \
+    libdbus-1-3 libexpat1 libatspi2.0-0 libgobject-2.0-0 \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
-# Copy requirements and install dependencies
-COPY ../requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt .
 
-# Copy frontend (Streamlit) code
+RUN pip install --no-cache-dir -r requirements.txt && \
+    python -m playwright install
+
 COPY . .
 
-# ✅ Add this line to include backend folder
-COPY ../backend ./backend
+EXPOSE 8000
 
-# Expose Streamlit default port
-EXPOSE 80
-
-# Run Streamlit app
-CMD ["streamlit", "run", "streamlit_app.py", "--server.port=80", "--server.address=0.0.0.0"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
