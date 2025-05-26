@@ -60,8 +60,10 @@ if st.button("Get Listings"):
 
             try:
                 response = requests.post(f"{API_BASE_URL}/lead", json=payload)
+                print("✅ from STREAMLIT After RESPONSE =:", response)
                 response.raise_for_status()
                 listings = response.json()
+                print("✅ from STREAMLIT LISTINGS:")
                 print("✅ from STREAMLIT LISTINGS:", listings)
             
                 if listings:
