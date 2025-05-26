@@ -227,6 +227,10 @@ def scrape_listings(city, area, property_type, purpose):
     for idx, listing in enumerate(listings, 1):
         print(f"📦 Listing {idx}: {listing}")
 
+    print("👀 scrape_listings result:", listings)
+    print("👀 Type of first item:", type(listings[0]) if listings else "No listings")
+
+
     return listings
 
 
@@ -280,9 +284,10 @@ def receive_lead(data: LeadRequest):
 
     print("✅ Returning result:", result)
     #return {"message": listing_messages}
-#    return {"message": result}
-    #return listings
+    # return {"message": result}
+    # return listings
     return {"listings": listings}
+
 
 
 
