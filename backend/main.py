@@ -282,7 +282,7 @@ def receive_lead(data: LeadRequest):
     # Join the listing messages into a single string
     result = "\n".join(listing_messages)
 
-    #print("✅ Returning result:", result)
+    print("✅ Returning result:", result)
     #return {"message": listing_messages}
     return {"message": result}
     # return listings
