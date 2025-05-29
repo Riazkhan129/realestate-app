@@ -189,8 +189,8 @@ def scrape_listings(city, area, property_type, purpose):
                 bed_el = card.query_selector('span[aria-label="Beds"]')
                 bath_el = card.query_selector('span[aria-label="Baths"]')
                 area_el = card.query_selector('span[aria-label="Area"] div')
-                creation_el = card.query.selecter('span(aria_label="Creation Date")
-
+                creation_el = card.query_selector('span[aria-label="Creation Date"]')
+                
 
                 price = price_el.inner_text() if price_el else "No price"
                 location = loc_el.inner_text() if loc_el else "No location"
