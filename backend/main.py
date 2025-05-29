@@ -239,7 +239,7 @@ def scrape_listings(city, area, property_type, purpose):
                     "bathrooms": bathrooms.strip(),
                     "area": area.strip(),
                     "creation": creation.strip(),
-                    "description": description.strip()
+                    "description": description.strip(),
                     "url": f"https://www.zameen.com{href}" if href and href.startswith('/') else href
                 })
 
