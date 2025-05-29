@@ -189,6 +189,8 @@ def scrape_listings(city, area, property_type, purpose):
                 bed_el = card.query_selector('span[aria-label="Beds"]')
                 bath_el = card.query_selector('span[aria-label="Baths"]')
                 area_el = card.query_selector('span[aria-label="Area"] div')
+                description_el = detail_page.query_selector('div[aria-label="Property description"] span')
+
 
                               
                 # ✅ Creation Date
@@ -201,6 +203,8 @@ def scrape_listings(city, area, property_type, purpose):
                 bedrooms = bed_el.inner_text() if bed_el else "N/A"
                 bathrooms = bath_el.inner_text() if bath_el else "N/A"
                 area = area_el.inner_text() if area_el else "N/A"
+                description = description_el.inner_text() if description_el else "N/A"
+                
      #           creation = creation_el.inner_text().strip() if creation_el else "N/A from main.py"
 
 
@@ -235,6 +239,7 @@ def scrape_listings(city, area, property_type, purpose):
                     "bathrooms": bathrooms.strip(),
                     "area": area.strip(),
                     "creation": creation.strip(),
+                    "description": description.strip()
                     "url": f"https://www.zameen.com{href}" if href and href.startswith('/') else href
                 })
 
@@ -295,6 +300,7 @@ def receive_lead(data: LeadRequest):
             f"{listing.get('area', 'No area')},\n"
             f"Price: {listing.get('price', 'No price')},\n"
             f"Creation: {listing.get('creation', 'No Creation Date')},\n"
+            f"Description: {listing.get('description', 'No Description')},\n"
             f"View it here: {listing.get('url', 'No URL')}"
 
 )
