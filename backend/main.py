@@ -268,9 +268,21 @@ def receive_lead(data: LeadRequest):
             f"Price: {listing.get('price', 'No price')},\n"
             f"Creation: {listing.get('creation', 'No Creation Date')},\n"
             f"View it here: {listing.get('url', 'No URL')}"
+
+            # 🔍 Print each variable for debugging
+            print(f"🔎 Listing #{ctr}:")
+            print(f"  Title: {title}")
+            print(f"  Location: {location}")
+            print(f"  Beds: {beds}")
+            print(f"  Bathrooms: {bathrooms}")
+            print(f"  Area: {area}")
+            print(f"  Price: {price}")
+            print(f"  Creation: {creation}")
+            print(f"  URL: {url}")
 )
+        
         listing_messages.append(listing_message)
-  #      print ("In listing in listings loop")
+        print ("In listing in listings loop")
 
     # Join the listing messages into a single string
     result = "\n".join(listing_messages)
