@@ -189,13 +189,17 @@ def scrape_listings(city, area, property_type, purpose):
                 bed_el = card.query_selector('span[aria-label="Beds"]')
                 bath_el = card.query_selector('span[aria-label="Baths"]')
                 area_el = card.query_selector('span[aria-label="Area"] div')
+
+                # <span class="_2fdf7fc5" aria-label="Area"><span>400 Sq. Yd.</span></span>
                 
                 # ✅ Creation Date
-                creation_el = card.query_selector('span[aria-label="Creation date"]')
+                creation_el = card.query_selector('span[aria-label="Creation date"] div')
                 if not creation_el:
                     # Fallback in case aria-label changes
                     # creation_el = card.query_selector('span._2fdf7fc5')
                     creation_el = card.query_selector('span[aria-label="Creation date"], span._2fdf7fc5')
+                    
+                #    <span class="_2fdf7fc5" aria-label="Creation date">1 week ago</span>
 
 
 
