@@ -205,15 +205,25 @@ def scrape_listings(city, area, property_type, purpose):
 
 
 ## Testing Creation date
-# ✅ Get creation date from <li><span>Added</span><span>...</span></li>
+# Default value
                 creation = "N/A"
-                li_elements = card.query_selector_all("li")
-                for li in li_elements:
-                    label = li.query_selector('span.ed0db22a')
-                    value = li.query_selector('span._2fdf7fc5')
-                    if label and label.inner_text().strip() == "Added" and value:
-                        creation = value.inner_text().strip()
-                        break
+
+                # If we have a property detail link, visit it to get 'Added' date
+                if href:
+                    try:
+                        detail_page = context.new_page()
+                        detail_url = f"https://www.zameen.com{href}" if href.startswith("/") else href
+                        detail_page.goto(detail_url, wait_until="domcontentloaded", timeout=15000)
+                        detail_page.wait_for_timeout(2000)
+
+                        # Look for the "Added" span
+                        creation_span = detail_page.query_selector('span[aria-label="Creation date"]')
+                        if creation_span:
+                            creation = creation_span.inner_text().strip()
+
+                        detail_page.close()
+                    except Exception as e:
+                        print(f"⚠️ Could not get creation date for {href}: {e}")
 
 ##
     
