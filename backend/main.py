@@ -270,7 +270,7 @@ def receive_lead(data: LeadRequest):
     # Join the listing messages into a single string
     result = "\n".join(listing_messages)
 
- #   print("✅ Returning result:", result)
+    print("✅ Returning result:", listings)
     #return {"message": listing_messages}
     # return {"message": result}
     # return listings
@@ -296,6 +296,7 @@ def get_filters():
             filters["purpose"] = [purpose_el.inner_text()] if purpose_el else []
             filters["city"] = [city_el.inner_text()] if city_el else []
             filters["property_type"] = [type_el.inner_text()] if type_el else []
+            filters["added"] = [added.el.inner_text()] if add.el else []
 
             browser.close()
     except Exception as e:
