@@ -189,7 +189,7 @@ def scrape_listings(city, area, property_type, purpose):
                 bed_el = card.query_selector('span[aria-label="Beds"]')
                 bath_el = card.query_selector('span[aria-label="Baths"]')
                 area_el = card.query_selector('span[aria-label="Area"] div')
-                creation_el = card.query_selector('span[aria-label="Creation Date"]')
+                creation_el = card.query_selector('span[aria-label="Creation date"]')
 
                 print(f"Creation_el - {creation_el}")
 
