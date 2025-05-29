@@ -192,17 +192,30 @@ def scrape_listings(city, area, property_type, purpose):
 
                               
                 # ✅ Creation Date
-                creation_el = card.query_selector('span[aria-label="Creation date"]')
+     #           creation_el = card.query_selector('span[aria-label="Creation date"]')
 
-                print(f"📦 Creation_el: {creation_el}")
+     #           print(f"📦 Creation_el: {creation_el}")
 
                 price = price_el.inner_text() if price_el else "No price"
                 location = loc_el.inner_text() if loc_el else "No location"
                 bedrooms = bed_el.inner_text() if bed_el else "N/A"
                 bathrooms = bath_el.inner_text() if bath_el else "N/A"
                 area = area_el.inner_text() if area_el else "N/A"
-                creation = creation_el.inner_text().strip() if creation_el else "N/A from main.py"
+     #           creation = creation_el.inner_text().strip() if creation_el else "N/A from main.py"
 
+
+## Testing Creation date
+# ✅ Get creation date from <li><span>Added</span><span>...</span></li>
+                creation = "N/A"
+                li_elements = card.query_selector_all("li")
+                for li in li_elements:
+                    label = li.query_selector('span.ed0db22a')
+                    value = li.query_selector('span._2fdf7fc5')
+                    if label and label.inner_text().strip() == "Added" and value:
+                        creation = value.inner_text().strip()
+                        break
+
+##
     
                 listings.append({
                     "title": title.strip(),
