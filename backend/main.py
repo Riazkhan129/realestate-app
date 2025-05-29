@@ -147,7 +147,7 @@ def get_zameen_url(city, area, property_type, purpose):
 # Scrape listings
 def scrape_listings(city, area, property_type, purpose):
     url = get_zameen_url(city, area, property_type, purpose)
-#    print(f"⚠️ Error URL: {url}")
+    print(f"⚠️ Error URL: {url}")
     listings = []
 
     with sync_playwright() as p:
@@ -159,7 +159,7 @@ def scrape_listings(city, area, property_type, purpose):
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
         })
 
- #       print(f"🌐 Opening URL: {url}")
+        print(f"🌐 Opening URL: {url}")
         page.goto(url, wait_until="domcontentloaded", timeout=90000)
         page.wait_for_timeout(5000)
 
@@ -190,9 +190,6 @@ def scrape_listings(city, area, property_type, purpose):
                 bath_el = card.query_selector('span[aria-label="Baths"]')
                 area_el = card.query_selector('span[aria-label="Area"] div')
                 creation_el = card.query_selector('span[aria-label="Creation date"]')
-
-                print(f"Creation_el - {creation_el}")
-
                 
 
                 price = price_el.inner_text() if price_el else "No price"
@@ -216,6 +213,8 @@ def scrape_listings(city, area, property_type, purpose):
             except Exception as e:
                 print(f"⚠️ Skipping card {idx+1} due to error: {e}")
                 continue
+            
+            print(f"Creation_el - {creation_el}")
 
         browser.close()
 
