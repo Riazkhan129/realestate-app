@@ -270,8 +270,9 @@ def receive_lead(data: LeadRequest):
             f"View it here: {listing.get('url', 'No URL')}"
 
 )
-        print(f"  Creation: {creation}")
+       
         listing_messages.append(listing_message)
+        print(f"  Creation: {creation}")
         print ("In listing in listings loop")
 
     # Join the listing messages into a single string
