@@ -214,7 +214,7 @@ def scrape_listings(city, area, property_type, purpose):
                 print(f"⚠️ Skipping card {idx+1} due to error: {e}")
                 continue
             
-            print(f"Creation_el - {creation_el}")
+            # print(f"Creation_el - {creation_el}")
 
         browser.close()
 
@@ -245,6 +245,9 @@ def receive_lead(data: LeadRequest):
     
     if not listings:
         return "Sorry, no listings found at the moment."
+
+    print(f"Creation_el - {creation_el}")
+
 
     listing_messages = []
     ctr = 0
