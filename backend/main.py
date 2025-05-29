@@ -259,7 +259,28 @@ def receive_lead(data: LeadRequest):
 
         ctr = ctr + 1
 #        listing_message = f"Listing: {ctr} -  {listing['title']},\n in {listing['location']},\n {listing['beds']} Bedrooms, {listing['bathrooms']} Bathrooms,\n {listing['area']},\n Price: {listing['price']},\n View it here: {listing['url']}"
+# Just to print informatio
+# Set variables using .get()
+    title = listing.get('title', 'No title')
+    location = listing.get('location', 'No location')
+    beds = listing.get('beds', 'N/A')
+    bathrooms = listing.get('bathrooms', 'N/A')
+    area = listing.get('area', 'No area')
+    price = listing.get('price', 'No price')
+    creation = listing.get('creation', 'No Creation Date')
+    url = listing.get('url', 'No URL')
 
+    # ✅ Correctly placed print statement to debug variables
+    print(f"DEBUG Listing {ctr}:")
+    print(f"  Title: {title}")
+    print(f"  Location: {location}")
+    print(f"  Beds: {beds}")
+    print(f"  Bathrooms: {bathrooms}")
+    print(f"  Area: {area}")
+    print(f"  Price: {price}")
+    print(f"  Creation: {creation}")
+    print(f"  URL: {url}")
+# End 
         listing_message = (
             f"Listing: {ctr} - {listing.get('title', 'No title')},\n"
             f"in {listing.get('location', 'No location')},\n"
@@ -269,16 +290,6 @@ def receive_lead(data: LeadRequest):
             f"Creation: {listing.get('creation', 'No Creation Date')},\n"
             f"View it here: {listing.get('url', 'No URL')}"
 
-            # 🔍 Print each variable for debugging
-            print(f"🔎 Listing #{ctr}:")
-            print(f"  Title: {title}")
-            print(f"  Location: {location}")
-            print(f"  Beds: {beds}")
-            print(f"  Bathrooms: {bathrooms}")
-            print(f"  Area: {area}")
-            print(f"  Price: {price}")
-            print(f"  Creation: {creation}")
-            print(f"  URL: {url}")
 )
         
         listing_messages.append(listing_message)
