@@ -261,7 +261,7 @@ def receive_lead(data: LeadRequest):
             f"{listing.get('beds', 'N/A')} Bedrooms, {listing.get('bathrooms', 'N/A')} Bathrooms,\n"
             f"{listing.get('area', 'No area')},\n"
             f"Price: {listing.get('price', 'No price')},\n"
-            f"added: (listing.get('added', 'No added'),\n
+            f"Added: {listing.get('added', 'No added')},\n"
             f"View it here: {listing.get('url', 'No URL')}"
 )
         listing_messages.append(listing_message)
