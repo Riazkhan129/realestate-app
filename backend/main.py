@@ -190,6 +190,8 @@ def scrape_listings(city, area, property_type, purpose):
                 bath_el = card.query_selector('span[aria-label="Baths"]')
                 area_el = card.query_selector('span[aria-label="Area"] div')
                 creation_el = card.query_selector('span[aria-label="Creation Date"]')
+
+                print("Creation_el - {creation_el})
                 
 
                 price = price_el.inner_text() if price_el else "No price"
@@ -206,7 +208,7 @@ def scrape_listings(city, area, property_type, purpose):
                     "beds": bedrooms.strip(),
                     "bathrooms": bathrooms.strip(),
                     "area": area.strip(),
-                    "added": creation.strip(),
+                    "creation": creation.strip(),
                     "url": f"https://www.zameen.com{href}" if href and href.startswith('/') else href
                 })
 
@@ -261,7 +263,7 @@ def receive_lead(data: LeadRequest):
             f"{listing.get('beds', 'N/A')} Bedrooms, {listing.get('bathrooms', 'N/A')} Bathrooms,\n"
             f"{listing.get('area', 'No area')},\n"
             f"Price: {listing.get('price', 'No price')},\n"
-            f"Added: {listing.get('added', 'No added')},\n"
+            f"Creation: {listing.get('creation', 'No Creation Date')},\n"
             f"View it here: {listing.get('url', 'No URL')}"
 )
         listing_messages.append(listing_message)
@@ -296,7 +298,6 @@ def get_filters():
             filters["purpose"] = [purpose_el.inner_text()] if purpose_el else []
             filters["city"] = [city_el.inner_text()] if city_el else []
             filters["property_type"] = [type_el.inner_text()] if type_el else []
-            filters["added"] = [added.el.inner_text()] if add.el else []
 
             browser.close()
     except Exception as e:

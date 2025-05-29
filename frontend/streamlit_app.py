@@ -58,7 +58,7 @@ if st.button("Get Listings"):
                         st.write(f"🛏️ Beds: {listing.get('beds', 'No Beds')}")
                         st.write(f"🛁 Bathrooms: {listing.get('bathrooms', 'No Bathrooms')}")
                         st.write(f"📐 Area: {listing.get('area', 'No Area')}")
-                        st.write(f"Created: (listing.get('added', 'No Added'))")
+                        st.write(f"Created: (listing.get('creation', 'No creation streamlit'))")
 #                        st.write(f"📝 Description: {listing.get('description', 'No description')}")
                         st.write(f"🔗 [View Listing]({listing.get('url', '#')})")
                 else:
