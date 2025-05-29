@@ -272,7 +272,7 @@ def receive_lead(data: LeadRequest):
 )
        
         listing_messages.append(listing_message)
-        print(f"  Creation: {creation}")
+        # print(f"  Creation: {creation}")
         print ("In listing in listings loop")
 
     # Join the listing messages into a single string
