@@ -246,7 +246,7 @@ def receive_lead(data: LeadRequest):
     if not listings:
         return "Sorry, no listings found at the moment."
 
-    print(f"Creation_el - {creation_el}")
+    # print(f"Creation_el - {creation_el}")
 
 
     listing_messages = []
