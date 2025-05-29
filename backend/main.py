@@ -191,7 +191,8 @@ def scrape_listings(city, area, property_type, purpose):
                 area_el = card.query_selector('span[aria-label="Area"] div')
                 creation_el = card.query_selector('span[aria-label="Creation Date"]')
 
-                print("Creation_el - {creation_el})
+                print(f"Creation_el - {creation_el}")
+
                 
 
                 price = price_el.inner_text() if price_el else "No price"
