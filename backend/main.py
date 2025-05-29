@@ -197,7 +197,7 @@ def scrape_listings(city, area, property_type, purpose):
                 bedrooms = bed_el.inner_text() if bed_el else "N/A"
                 bathrooms = bath_el.inner_text() if bath_el else "N/A"
                 area = area_el.inner_text() if area_el else "N/A"
-                creation = creation_el.inner_text() if creation_wl else "N/A"
+                creation = creation_el.inner_text() if creation_el else "N/A"
     
                 listings.append({
                     "title": title.strip(),
