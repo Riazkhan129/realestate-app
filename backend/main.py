@@ -189,7 +189,6 @@ def scrape_listings(city, area, property_type, purpose):
                 bed_el = card.query_selector('span[aria-label="Beds"]')
                 bath_el = card.query_selector('span[aria-label="Baths"]')
                 area_el = card.query_selector('span[aria-label="Area"] div')
-                description_el = detail_page.query_selector('div[aria-label="Property description"] span')
 
 
                               
@@ -203,7 +202,6 @@ def scrape_listings(city, area, property_type, purpose):
                 bedrooms = bed_el.inner_text() if bed_el else "N/A"
                 bathrooms = bath_el.inner_text() if bath_el else "N/A"
                 area = area_el.inner_text() if area_el else "N/A"
-                description = description_el.inner_text() if description_el else "N/A"
                 
      #           creation = creation_el.inner_text().strip() if creation_el else "N/A from main.py"
 
@@ -211,6 +209,7 @@ def scrape_listings(city, area, property_type, purpose):
 ## Testing Creation date
 # Default value
                 creation = "N/A"
+                description = "N/A"
 
                 # If we have a property detail link, visit it to get 'Added' date
                 if href:
@@ -224,6 +223,11 @@ def scrape_listings(city, area, property_type, purpose):
                         creation_span = detail_page.query_selector('span[aria-label="Creation date"]')
                         if creation_span:
                             creation = creation_span.inner_text().strip()
+
+                        # ✅ Get property description
+                        description_el = detail_page.query_selector('div[aria-label="Property description"] span')
+                        if description_el:
+                            description = description_el.inner_text().strip()
 
                         detail_page.close()
                     except Exception as e:
