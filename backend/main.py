@@ -194,7 +194,9 @@ def scrape_listings(city, area, property_type, purpose):
                 creation_el = card.query_selector('span[aria-label="Creation date"]')
                 if not creation_el:
                     # Fallback in case aria-label changes
-                    creation_el = card.query_selector('span._2fdf7fc5')
+                    # creation_el = card.query_selector('span._2fdf7fc5')
+                    creation_el = card.query_selector('span[aria-label="Creation date"], span._2fdf7fc5')
+
 
 
                 price = price_el.inner_text() if price_el else "No price"
