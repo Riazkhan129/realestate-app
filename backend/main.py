@@ -189,6 +189,7 @@ def scrape_listings(city, area, property_type, purpose):
                 bed_el = card.query_selector('span[aria-label="Beds"]')
                 bath_el = card.query_selector('span[aria-label="Baths"]')
                 area_el = card.query_selector('span[aria-label="Area"] div')
+                creation_el = card.query.selecter('span(aria_label="Creation Date")
 
 
                 price = price_el.inner_text() if price_el else "No price"
@@ -196,7 +197,7 @@ def scrape_listings(city, area, property_type, purpose):
                 bedrooms = bed_el.inner_text() if bed_el else "N/A"
                 bathrooms = bath_el.inner_text() if bath_el else "N/A"
                 area = area_el.inner_text() if area_el else "N/A"
-
+                creation = creation_el.inner_text() if creation_wl else "N/A"
     
                 listings.append({
                     "title": title.strip(),
@@ -205,7 +206,8 @@ def scrape_listings(city, area, property_type, purpose):
                     "beds": bedrooms.strip(),
                     "bathrooms": bathrooms.strip(),
                     "area": area.strip(),
-                    # "url": f"https://www.zameen.com{href}" if href and href.startswith('/') else href
+                    "added": creation.strip(),
+                    "url": f"https://www.zameen.com{href}" if href and href.startswith('/') else href
                 })
 
             except Exception as e:
@@ -259,7 +261,8 @@ def receive_lead(data: LeadRequest):
             f"{listing.get('beds', 'N/A')} Bedrooms, {listing.get('bathrooms', 'N/A')} Bathrooms,\n"
             f"{listing.get('area', 'No area')},\n"
             f"Price: {listing.get('price', 'No price')},\n"
-#            f"View it here: {listing.get('url', 'No URL')}"
+            f"addded: (listing.get('added', 'No added'),\n
+            f"View it here: {listing.get('url', 'No URL')}"
 )
         listing_messages.append(listing_message)
   #      print ("In listing in listings loop")
