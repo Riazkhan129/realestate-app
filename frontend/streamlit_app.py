@@ -60,7 +60,7 @@ if st.button("Get Listings"):
                         st.write(f"🛁 Bathrooms: {listing.get('bathrooms', 'No Bathrooms')}")
                         st.write(f"📐 Area: {listing.get('area', 'No Area')}")
                         st.write(f"📐 Created: {listing.get('creation', 'No creation date streamlit')}")
-#                        st.write(f"📝 Description: {listing.get('description', 'No description')}")
+                        st.write(f"📝 Description: {listing.get('description', 'No description streamlit')}")
                         st.write(f"🔗 [View Listing]({listing.get('url', '#')})")
                 else:
                     st.info("No listings found for your input.")
