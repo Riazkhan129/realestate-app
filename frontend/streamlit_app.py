@@ -4,19 +4,6 @@ import pandas as pd
 from io import StringIO
 import time
 
-import streamlit as st
-
-st.markdown("""
-    <style>
-        .block-container {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-        }
-    </style>
-""", unsafe_allow_html=True)
-
-from datetime import datetime  # ✅ Added
-
 # ✅ Expiry date check
 expiry_date = datetime(2025, 6, 7)
 current_date = datetime.now()
@@ -113,7 +100,7 @@ if st.button("Get Listings"):
                     st.write(f"📐 Area: {listing.get('area', 'No Area')}")
                     st.write(f"📐 Created: {listing.get('creation', 'No creation date streamlit')}")
                     st.write(f"📝 Description: {listing.get('description', 'No description streamlit')}")
-                    st.write(f"🔗 [View Listing]({listing.get('url', '#')})")
+          #          st.write(f"🔗 [View Listing]({listing.get('url', '#')})")
 
                 # ✅ CSV Download outside the loop
                 df = pd.DataFrame(listings)
