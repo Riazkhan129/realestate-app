@@ -4,6 +4,17 @@ import pandas as pd
 from io import StringIO
 import time
 
+import streamlit as st
+
+st.markdown("""
+    <style>
+        .block-container {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 from datetime import datetime  # ✅ Added
 
 # ✅ Expiry date check
