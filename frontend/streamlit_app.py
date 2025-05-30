@@ -42,16 +42,12 @@ if st.button("Get Listings"):
         }
 
         with st.spinner("Fetching listings..."):
-
             try:
-                
                 response = requests.post(f"{API_BASE_URL}/lead", json=payload)
-#                print("✅ from STREAMLIT After RESPONSE =:", response)
                 response.raise_for_status()
                 data = response.json()
-#                listings = response.json()
                 listings = data["listings"]
-            
+
                 if listings:
                     st.success(f"Found {len(listings)} listings.")
                     for listing in listings:
@@ -65,20 +61,22 @@ if st.button("Get Listings"):
                         st.write(f"📐 Created: {listing.get('creation', 'No creation date streamlit')}")
                         st.write(f"📝 Description: {listing.get('description', 'No description streamlit')}")
                         st.write(f"🔗 [View Listing]({listing.get('url', '#')})")
-                     # --- CSV Download Section ---
-                df = pd.DataFrame(listings)
-                csv_buffer = StringIO()
-                df.to_csv(csv_buffer, index=False)
-                csv_data = csv_buffer.getvalue()
 
-                st.download_button(
-                    label="📥 Download listings as CSV",
-                    data=csv_data,
-                    file_name="property_listings.csv",
-                    mime="text/csv",
-                    key="download_csv_button"  # ✅ unique key added
+                    # ✅ CSV Download outside the loop
+                    df = pd.DataFrame(listings)
+                    csv_buffer = StringIO()
+                    df.to_csv(csv_buffer, index=False)
+                    csv_data = csv_buffer.getvalue()
+
+                    st.download_button(
+                        label="📥 Download listings as CSV",
+                        data=csv_data,
+                        file_name="property_listings.csv",
+                        mime="text/csv",
+                        key="download_csv_button"
                     )
-            else:
-                st.info("No listings found for your input.")
+                else:
+                    st.info("No listings found for your input.")
+
             except Exception as e:
                 st.error(f"An error occurred: {e}")
