@@ -78,7 +78,7 @@ if st.button("Get Listings"):
                     mime="text/csv",
                     key="download_csv_button"  # ✅ unique key added
                     )
-                else:
-                    st.info("No listings found for your input.")
+            else:
+                st.info("No listings found for your input.")
             except Exception as e:
                 st.error(f"An error occurred: {e}")
