@@ -28,13 +28,39 @@ st.subheader("Your One Window Solution")
 # 3. Contact Info (Smaller text below title or footer)
 st.markdown("📞 **Contact:** Riaz Khan — 0334-346803")
 
+st.markdown("---")  # Adds a horizontal separator
+
+# Row 1: Full Name and Phone Number
+col1, col2 = st.columns(2)
+with col1:
+    name = st.text_input("Full Name")
+with col2:
+    phone = st.text_input("Phone Number")
+
+# Row 2: Purpose and Property Type
+col3, col4 = st.columns(2)
+with col3:
+    purpose = st.selectbox("Purpose", ["Buy", "Rent"])
+with col4:
+    property_type = st.selectbox("Property Type", ["Flat", "House", "Commercial", "Plot"])
+
+# Row 3: City and Area
+col5, col6 = st.columns(2)
+with col5:
+    city = st.selectbox("City", ["Karachi"])  # Add more cities if needed
+with col6:
+    area = st.selectbox("Area", [
+        "DHA Defence", "Clifton", "Gulshan-e-Iqbal Town", "Gulistan-e-Jauhar",
+        "Scheme 33", "Bahria Town Karachi", "Jamshed Town", "DHA City Karachi"
+    ])
+
 # 1. Input Fields
-name = st.text_input("Full Name")
-phone = st.text_input("Phone Number")
-purpose = st.selectbox("purpose", ["Buy", "Rent"])
-property_type = st.selectbox("property Type", ["Flat", "House", "commercial", "Plot"])
-city = st.selectbox("city", ["Karachi"])
-area = st.selectbox("area", ["DHA Defence", "Clifton", "Gulshan-e-Iqbal Town", "Gulistan-e-Jauhar", "Scheme 33", "Bahria Town Karachi", "Jamshed Town", "DHA City Karachi"])
+#name = st.text_input("Full Name")
+#phone = st.text_input("Phone Number")
+#purpose = st.selectbox("purpose", ["Buy", "Rent"])
+#property_type = st.selectbox("property Type", ["Flat", "House", "commercial", "Plot"])
+#city = st.selectbox("city", ["Karachi"])
+#area = st.selectbox("area", ["DHA Defence", "Clifton", "Gulshan-e-Iqbal Town", "Gulistan-e-Jauhar", "Scheme 33", "Bahria Town Karachi", "Jamshed Town", "DHA City Karachi"])
 
 # 2. Submit Button
 if st.button("Get Listings"):
