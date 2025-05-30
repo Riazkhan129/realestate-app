@@ -17,7 +17,16 @@ if current_date > expiry_date:
 # ✅ Set your FastAPI backend URL on Railway
 API_BASE_URL = "https://development-fastapi.up.railway.app"  # Replace with actual Railway FastAPI URL
 
-st.title("🏠 Click Property - Your One Window Solution")
+#st.title("🏠 Click Property - Your One Window Solution")
+
+# 1. Company Name (Main Title)
+st.title("🏠 Click Property")
+
+# 2. Tagline (Slogan / Subtitle)
+st.subheader("Your One Window Solution")
+
+# 3. Contact Info (Smaller text below title or footer)
+st.markdown("📞 **Contact:** Riaz Khan — 0334-346803")
 
 # 1. Input Fields
 name = st.text_input("Full Name")
