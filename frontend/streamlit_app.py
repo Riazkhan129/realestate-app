@@ -4,6 +4,16 @@ import pandas as pd
 from io import StringIO
 import time
 
+from datetime import datetime  # ✅ Added
+
+# ✅ Expiry date check
+expiry_date = datetime(2025, 5, 29)
+current_date = datetime.now()
+
+if current_date > expiry_date:
+    st.error("⛔ This app has expired. Please contact Click Property - 0334-3468030 Riaz Khan.")
+    st.stop()
+
 # ✅ Set your FastAPI backend URL on Railway
 API_BASE_URL = "https://development-fastapi.up.railway.app"  # Replace with actual Railway FastAPI URL
 
