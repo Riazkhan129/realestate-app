@@ -37,16 +37,8 @@ if st.button("Get Listings"):
             "area": area
         }
 
-        # Show progress bar while fetching data
-        progress_bar = st.progress(0, text="Fetching listings...")
-
-        # Simulate progress (just visual)
-        for percent_complete in range(0, 100, 20):
-            time.sleep(0.1)  # Simulated loading delay
-            progress_bar.progress(percent_complete + 20, text="Fetching listings...")
-
-        progress_bar.empty()  # remove the progress bar
-
+        with st.spinner("Fetching listings..."):
+        
         try:
             response = requests.post(f"{API_BASE_URL}/lead", json=payload)
             response.raise_for_status()
