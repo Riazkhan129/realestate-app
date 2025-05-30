@@ -6,7 +6,7 @@ import requests
 API_BASE_URL = "https://development-fastapi.up.railway.app"  # Replace with actual Railway FastAPI URL
 
 
-st.title("🏠 Real Estate Lead Generator")
+st.title("🏠 Click Property - Your One Window Solution")
 
 
 # 1. Input Fields
