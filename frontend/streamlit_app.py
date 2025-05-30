@@ -22,7 +22,7 @@ API_BASE_URL = "https://development-fastapi.up.railway.app"  # Replace with actu
 st.title("🏠 Click Property")
 
 # 2. Tagline (Slogan / Subtitle)
-st.subheader("Your One Window Solution", "📞 **Contact:** Riaz Khan — 0334-346803")
+st.subheader("Your One Window Solution")
 
 # 3. Contact Info (Smaller text below title or footer)
 st.markdown("📞 **Contact:** Riaz Khan — 0334-346803")
