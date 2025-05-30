@@ -77,7 +77,7 @@ if st.button("Get Listings"):
                     file_name="property_listings.csv",
                     mime="text/csv"
                 )
-                else:
+            else:
                     st.info("No listings found for your input.")
             except Exception as e:
                 st.error(f"An error occurred: {e}")
