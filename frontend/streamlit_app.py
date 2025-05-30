@@ -75,7 +75,7 @@ if st.button("Get Listings"):
                             label="📥 Download listings as CSV",
                             data=csv_data,
                             file_name="property_listings.csv",
-                            mime="text/csv"
+                            mime="text/csv",
                             key="download_csv_button"  # ✅ unique key added
                         )
                 else:
