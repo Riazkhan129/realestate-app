@@ -37,7 +37,7 @@ if st.button("Get Listings"):
             "area": area
         }
 
-        with st.spinner("Fetching listings..."):
+    with st.spinner("Fetching listings..."):
         
         try:
             response = requests.post(f"{API_BASE_URL}/lead", json=payload)
