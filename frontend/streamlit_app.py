@@ -1,6 +1,9 @@
 
 import streamlit as st
 import requests
+import pandas as pd
+from io import StringIO
+
 
 # ✅ Set your FastAPI backend URL on Railway
 API_BASE_URL = "https://development-fastapi.up.railway.app"  # Replace with actual Railway FastAPI URL
@@ -62,6 +65,18 @@ if st.button("Get Listings"):
                         st.write(f"📐 Created: {listing.get('creation', 'No creation date streamlit')}")
                         st.write(f"📝 Description: {listing.get('description', 'No description streamlit')}")
                         st.write(f"🔗 [View Listing]({listing.get('url', '#')})")
+                     # --- CSV Download Section ---
+                df = pd.DataFrame(listings)
+                csv_buffer = StringIO()
+                df.to_csv(csv_buffer, index=False)
+                csv_data = csv_buffer.getvalue()
+
+                st.download_button(
+                    label="📥 Download listings as CSV",
+                    data=csv_data,
+                    file_name="property_listings.csv",
+                    mime="text/csv"
+                )
                 else:
                     st.info("No listings found for your input.")
             except Exception as e:
