@@ -6,7 +6,7 @@ import time
 from datetime import datetime
 
 # ✅ Expiry date check
-expiry_date = datetime(2025, 6, 7)
+expiry_date = datetime(2025, 6, 30)
 current_date = datetime.now()
 
 if current_date > expiry_date:
